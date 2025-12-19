@@ -1,0 +1,209 @@
+/* ===== Global Styles ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #0655f4;
+  color: rgb(230, 230, 230);
+  min-height: 100vh;
+}
+
+/* ===== App Container ===== */
+.app {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* ===== First Load Centered View ===== */
+.centered-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertical center */
+  align-items: center;      /* horizontal center */
+  height: 80vh;             /* center in viewport */
+  text-align: center;
+}
+
+/* ===== Title ===== */
+h1 {
+  margin-bottom: 25px;
+  font-size: 32px;
+  letter-spacing: 1px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ===== Search Bar ===== */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+  position: sticky;
+  top: 0;
+  background: #0655f4;
+  padding: 12px 20px;
+  border-radius: 30px;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.search-bar input {
+  padding: 10px;
+  width: 260px;
+  border-radius: 25px 0 0 25px;
+  border: none;
+  outline: none;
+}
+
+.search-bar button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 0 25px 25px 0;
+  background: white;
+  font-weight: bold;
+  cursor: pointer;
+  color: #0655f4;
+  transition: 0.3s;
+}
+
+.search-bar button:hover {
+  background: #cfd9ff;
+}
+
+/* ===== Artist List ===== */
+.artist-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ===== Artist Card ===== */
+.artist-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff15;
+  backdrop-filter: blur(4px);
+  padding: 12px;
+  border-radius: 20px;
+  border: 2px solid #ffffff40;
+  width: 150px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.artist-card:hover {
+  transform: translateY(-5px);
+}
+
+.artist-card img {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+
+.artist-card p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* ===== Release List ===== */
+.release-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.release-list {
+  margin-top: 20px;
+}
+
+.release-list ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.release-card {
+  background: #ffffff15;
+  backdrop-filter: blur(4px);
+  padding: 12px;
+  border-radius: 20px;
+  border: 2px solid #ffffff40;
+  width: 150px;
+  text-align: center;
+}
+
+.release-card img {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+
+.release-card p {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+/* ===== Buttons ===== */
+.details-btn,
+#backBtn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  background: white;
+  color: #0655f4;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.details-btn:hover,
+#backBtn:hover {
+  background: #d7e1ff;
+}
+
+/* ===== Error & Loading Messages ===== */
+.error {
+  color: red;
+  margin: 1rem 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .search-bar input {
+    width: 180px;
+  }
+
+  .artist-card,
+  .release-card {
+    width: 130px;
+  }
+
+  .artist-card img,
+  .release-card img {
+    width: 70px;
+    height: 70px;
+  }
+}
