@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { searchArtists, getArtistDetails } from "./services/discogsapi";
 
-import "./App.css";
-
 function App() {
   const [query, setQuery] = useState("");
   const [artists, setArtists] = useState([]);
@@ -23,7 +21,7 @@ function App() {
       const results = await searchArtists(query);
       setArtists(results);
       if (results.length === 0) setError("No artist found.");
-    } catch (err) {
+    } catch {
       setError("Error fetching data.");
       setArtists([]);
     } finally {
@@ -45,9 +43,7 @@ function App() {
   };
 
   // Back to results
-  const handleBack = () => {
-    setSelectedArtist(null);
-  };
+  const handleBack = () => setSelectedArtist(null);
 
   return (
     <div className="app">

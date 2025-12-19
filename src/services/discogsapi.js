@@ -1,37 +1,29 @@
-const BASE_URL = "https://api.discogs.com";
+// src/services/discogsapi.js
+const DISCOGS_TOKEN = "rZKdpaeMktFVnVPRTnPXyGXhCofsukRDTlnIvRid";
 
-/**
- * Search artists from Discogs API
- * @param {string} query - The search term for the artist
- * @returns {Array} - Array of artist objects
- */
-export async function searchArtists(query) {
-  const response = await fetch(
-    `${BASE_URL}/database/search?q=${query}&type=artist&token=${import.meta.env.VITE_DISCOGS_TOKEN}`
+// Search artists
+export const searchArtists = async (query) => {
+  const res = await fetch(
+    `https://api.discogs.com/database/search?q=${query}&token=${DISCOGS_TOKEN}`
   );
+  const data = await res.json();
+  return data.results || [];
+};
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch artists");
-  }
-
-  const data = await response.json();
-  return data.results;
-}
-
-/**
- * Get releases for a specific artist
- * @param {number} artistId - The Discogs artist ID
- * @returns {Array} - Array of release objects
- */
-export async function getArtistReleases(artistId) {
-  const response = await fetch(
-    `${BASE_URL}/artists/${artistId}/releases?token=${import.meta.env.VITE_DISCOGS_TOKEN}`
+// Get artist details with releases
+export const getArtistDetails = async (artistId) => {
+  const res = await fetch(
+    `https://api.discogs.com/artists/${artistId}?token=${DISCOGS_TOKEN}`
   );
+  const artistData = await res.json();
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch releases");
-  }
+  const releasesRes = await fetch(
+    `https://api.discogs.com/artists/${artistId}/releases?token=${DISCOGS_TOKEN}`
+  );
+  const releasesData = await releasesRes.json();
 
-  const data = await response.json();
-  return data.releases;
-}
+  return {
+    ...artistData,
+    releases: releasesData.releases || [],
+  };
+};
